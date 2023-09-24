@@ -1,11 +1,8 @@
-﻿@page "/fetchdata"
+﻿@page "/test"
 @inject HttpClient Http
 @using System.Net.Http
 
-
-<PageTitle>Weather forecast</PageTitle>
-
-<h1>Weather forecast</h1>
+<PageTitle>Test</PageTitle>
 
 <p>This component demonstrates fetching data from the server.</p>
 
@@ -39,14 +36,21 @@ else
 }
 
 @code {
-    private WeatherForecast[]? forecasts;
+    //private WeatherForecast[]? forecasts;
+    private List<WeatherForecast>? forecasts;
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
+        //forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
         //forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("http://localhost:5019/WeatherForecast");
         //forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("api/GetWeatherForecast");
+        forecasts = await GetWeatherForecasts();
     }
+
+	private async Task<List<WeatherForecast>?> GetWeatherForecasts()
+	{
+		return await Http.GetFromJsonAsync<List<WeatherForecast>>("http://localhost:5019/WeatherForecast");
+	}
 
     public class WeatherForecast
     {
