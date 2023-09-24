@@ -9,9 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IWeatherForecastService, WeatherForecastService>();    // Ёкземпл€р сервиса создаЄтс€ при обращении к сервису и живЄт до окончани€ выполнени€ задчи
-builder.Services.AddTransient<IWeatherForecastService, WeatherForecastService>(); // Ёкземпл€р сервиса создаЄтс€ при каждом обращении к сервису даже если это происходит одновременно. Ёкземпл€р живЄт до окончани€ выполнени€ задачи
-builder.Services.AddSingleton<IWeatherForecastService, WeatherForecastService>(); // Ёкземпл€р сервиса создаЄтс€ при запуске приложени€ и живЄт до окончани€ работы приложени€
+builder.Services.AddScoped<IWeatherForecastService, WeatherForecastRussianService>();    // Ёкземпл€р сервиса создаЄтс€ при обращении к сервису и живЄт до окончани€ выполнени€ задчи
+//builder.Services.AddTransient<IWeatherForecastService, WeatherForecastService>(); // Ёкземпл€р сервиса создаЄтс€ при каждом обращении к сервису даже если это происходит одновременно. Ёкземпл€р живЄт до окончани€ выполнени€ задачи
+//builder.Services.AddSingleton<IWeatherForecastService, WeatherForecastService>(); // Ёкземпл€р сервиса создаЄтс€ при запуске приложени€ и живЄт до окончани€ работы приложени€
 
 var app = builder.Build();
 

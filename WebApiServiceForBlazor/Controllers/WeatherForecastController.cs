@@ -10,7 +10,7 @@ namespace WebApiServiceForBlazor.Controllers
     public class WeatherForecastController : ControllerBase
     {
         private readonly ILogger<WeatherForecastController> _logger;
-        private IWeatherForecastService _weatherForecastService;
+        private readonly IWeatherForecastService _weatherForecastService;
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger, IWeatherForecastService weather)
         {
