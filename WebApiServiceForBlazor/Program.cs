@@ -18,10 +18,16 @@ builder.Services.AddDbContext<WeatherDbContext>(options => options.UseSqlServer(
 
 //Service
 builder.Services.AddScoped<IWeatherForecastService, WeatherForecastRussianService>();    // Ёкземпл€р сервиса создаЄтс€ при обращении к сервису и живЄт до окончани€ выполнени€ задчи
+//builder.Services.AddScoped<IWeatherForecastService, WeatherForecastService>(); // Ёкземпл€р сервиса создаЄтс€ при каждом обращении к сервису даже если это происходит одновременно. Ёкземпл€р живЄт до окончани€ выполнени€ задачи
 //builder.Services.AddTransient<IWeatherForecastService, WeatherForecastService>(); // Ёкземпл€р сервиса создаЄтс€ при каждом обращении к сервису даже если это происходит одновременно. Ёкземпл€р живЄт до окончани€ выполнени€ задачи
 //builder.Services.AddSingleton<IWeatherForecastService, WeatherForecastService>(); // Ёкземпл€р сервиса создаЄтс€ при запуске приложени€ и живЄт до окончани€ работы приложени€
 
 var app = builder.Build();
+
+//DB init and update
+using var serviceScope = app.Services.CreateScope();
+var dbContext = serviceScope.ServiceProvider.GetService<WeatherDbContext>();
+dbContext?.Database.Migrate();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
