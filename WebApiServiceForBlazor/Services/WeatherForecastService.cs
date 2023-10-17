@@ -4,7 +4,9 @@ using WebApiServiceForBlazor.Services.Interfaces;
 
 namespace WebApiServiceForBlazor.Services
 {
-    public class WeatherForecastService : IWeatherForecastService
+    // Заглушил интерфейс чтобы не было ошибок
+    // todo: Переписать класс чтобы интерфейс верно реализовывался
+    public class WeatherForecastService //: IWeatherForecastService
     {
         private static readonly string[] Summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
         private readonly WeatherDbContext _context;
