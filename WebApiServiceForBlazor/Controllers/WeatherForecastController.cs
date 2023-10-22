@@ -29,12 +29,19 @@ namespace WebApiServiceForBlazor.Controllers
             return generateCollection;
         }
 
-        //[HttpGet(Name = "GenerateWithoutDB")]
+        ////[HttpGet(Name = "GenerateWithoutDB")]
+        //[HttpPost]
+        ////public async Task<IEnumerable<WeatherForecast>> Generate()
+        //public async Task<IEnumerable<WeatherForecastDTO>> Generate()
+        //{
+        //    await _weatherForecastService.Generate();      // генерируем новые данные и отправляем в БД
+        //    return _weatherForecastService.GetFromDb(); // выводим данные из БД
+        //}
+
         [HttpPost]
-        //public async Task<IEnumerable<WeatherForecast>> Generate()
-        public async Task<IEnumerable<WeatherForecastDTO>> Generate()
+        public async Task<IEnumerable<WeatherForecastDTO>> Post(WeatherForecastDTO model)
         {
-            await _weatherForecastService.Generate();      // генерируем новые данные и отправляем в БД
+            await _weatherForecastService.Add(model);   // теперь мы не генерируем случайные значения, а принимаем с клиента + сохраняем в БД
             return _weatherForecastService.GetFromDb(); // выводим данные из БД
         }
     }
