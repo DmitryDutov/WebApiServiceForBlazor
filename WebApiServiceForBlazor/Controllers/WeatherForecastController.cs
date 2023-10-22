@@ -38,11 +38,31 @@ namespace WebApiServiceForBlazor.Controllers
         //    return _weatherForecastService.GetFromDb(); // выводим данные из БД
         //}
 
+        //[HttpPost]
+        //public async Task<IEnumerable<WeatherForecastDTO>> Post(WeatherForecastDTO model)
+        //{
+        //    await _weatherForecastService.Add(model);   // теперь мы не генерируем случайные значения, а принимаем с клиента + сохраняем в БД
+        //    return _weatherForecastService.GetFromDb(); // выводим данные из БД
+        //}
+
         [HttpPost]
-        public async Task<IEnumerable<WeatherForecastDTO>> Post(WeatherForecastDTO model)
+        public async Task<IActionResult> Post(WeatherForecastDTO model)
         {
-            await _weatherForecastService.Add(model);   // теперь мы не генерируем случайные значения, а принимаем с клиента + сохраняем в БД
-            return _weatherForecastService.GetFromDb(); // выводим данные из БД
+            if (!ModelState.IsValid )
+            {
+                return StatusCode(401, "Weather model is incorrect!");
+            }
+
+            try
+            {
+                await _weatherForecastService.Add(model);   // теперь мы не генерируем случайные значения, а принимаем с клиента + сохраняем в БД
+                return StatusCode(200, _weatherForecastService.GetFromDb()); // если валидация прошла, то выводим данные из БД
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Code generate Error");
+            }
+
         }
     }
 }
