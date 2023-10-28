@@ -21,6 +21,7 @@ builder.Services.AddScoped<IWeatherForecastService, WeatherForecastRussianServic
 //builder.Services.AddScoped<IWeatherForecastService, WeatherForecastService>(); // Ёкземпл€р сервиса создаЄтс€ при каждом обращении к сервису даже если это происходит одновременно. Ёкземпл€р живЄт до окончани€ выполнени€ задачи
 //builder.Services.AddTransient<IWeatherForecastService, WeatherForecastService>(); // Ёкземпл€р сервиса создаЄтс€ при каждом обращении к сервису даже если это происходит одновременно. Ёкземпл€р живЄт до окончани€ выполнени€ задачи
 //builder.Services.AddSingleton<IWeatherForecastService, WeatherForecastService>(); // Ёкземпл€р сервиса создаЄтс€ при запуске приложени€ и живЄт до окончани€ работы приложени€
+builder.Services.AddScoped<MultiplicationTableService>();
 
 var app = builder.Build();
 

@@ -32,18 +32,6 @@ namespace WebApiServiceForBlazor.Services
                 .ToArray();
         }
 
-        //public async Task Generate()
-        //{
-        //    var tmpModel = new WeatherForecast
-        //    {
-        //        Date = DateTime.Now,
-        //        TemperatureC = Random.Shared.Next(-20, 55),
-        //        Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        //    };
-
-        //    await Add(tmpModel); //вызываем метод Add
-        //}
-
         public async Task Generate()
         {
             var tmpModel = new WeatherForecastDTO
@@ -56,10 +44,8 @@ namespace WebApiServiceForBlazor.Services
             await Add(tmpModel); //вызываем метод Add
         }
 
-        //public WeatherForecast[] GetFromDb()
         public WeatherForecastDTO[] GetFromDb()
         {
-            //return _context.Forecasts.ToList().ToArray();
             return _context.Forecasts.Select(x => new WeatherForecastDTO
             {
                 Date = x.Date,
@@ -69,17 +55,11 @@ namespace WebApiServiceForBlazor.Services
         }
 
 
-        //public WeatherForecast[] Get()
         public WeatherForecastDTO[] Get()
         {
             return _context.Forecasts.Select(x => new WeatherForecastDTO()).ToArray();
         }
 
-        //public async Task Add(WeatherForecast model)
-        //{
-        //    await _context.Forecasts.AddAsync(model);
-        //    await _context.SaveChangesAsync();
-        //}
         public async Task Add(WeatherForecastDTO model)
         {
             await _context.Forecasts.AddAsync(new WeatherForecast
